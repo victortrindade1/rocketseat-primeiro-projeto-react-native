@@ -2,12 +2,12 @@
 
 - Vc declara functions e classes igual no React. Msm jeito de declarar
   components.
-- Não existem as tags do HTML, como <div>, <p>, <span>... aqui vc vai usar tags
+- Não existem as tags do HTML, como `<div>, <p>, <span>`... aqui vc vai usar tags
   próprias do RN.
 - Os estilos são aplicados sem classes ou ids. Não chega a ser o Styled
   Component. É um jeito nativo de escrever CSS no JS, mas o Styled Components tb
   pode ser usado no RN.
-- Todo texto é <Text />. Não existe estilização própria.
+- Todo texto é `<Text />`. Não existe estilização própria, como `<h1>`, etc.
 - No RN, todos os elementos já possuem por padrão o CSS `display: flex`. Nós
   podemos usar direto o `justify-content`, `flex-direction`, `align-items`, etc.
 - Todo elemento possui por padrão o `flexDirection: 'column'`. No React, por
