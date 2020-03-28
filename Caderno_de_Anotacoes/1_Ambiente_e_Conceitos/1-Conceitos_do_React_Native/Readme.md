@@ -12,7 +12,7 @@
   podemos usar direto o `justify-content`, `flex-direction`, `align-items`, etc.
 - Todo elemento possui por padrão o `flexDirection: 'column'`. No React, por
   padrão é o `flexDirection: 'row'`.
-- No `StyleSheet`, os textos e de CSS como `center` e as cores vêm entre aspas
+- No `StyleSheet`, os textos de CSS como `center` e as cores vêm entre aspas
   simples:
   - No CSS:
     - `justify-content: center`
