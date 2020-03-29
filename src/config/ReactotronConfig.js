@@ -7,5 +7,5 @@ if (__DEV__) {
 
   console.tron = tron;
 
-  tron.clear(); // Opcional. Limpa a tela do Reactotron a cada refresh
+  // tron.clear(); // Opcional. Limpa a tela do Reactotron a cada refresh
 }

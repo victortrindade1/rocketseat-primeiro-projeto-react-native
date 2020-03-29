@@ -77,8 +77,6 @@ if (__DEV__) {
 }
 ```
 
-> `__DEV__` é uma variável global do RN. O eslint vai reclamar. Configure o eslint
-
 OBS: Para Android, provavelmente vai precisar de acrescentar o ip local do pc
 como argumento de `.configure()`. Meu ip é 192.168.1.5. Então fica assim:
 
@@ -99,6 +97,8 @@ if (__DEV__) {
 Existe uma treta de portas. Se vc ver q a coisa não ta legal:
 
 `>>> ~/Android/Sdk/platform-tools/adb reverse tcp:9090 tcp:9090;`
+
+> `__DEV__` é uma variável global do RN. O eslint vai reclamar. Configure o eslint
 
 ### .eslintrc.js
 
