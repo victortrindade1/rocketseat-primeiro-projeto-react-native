@@ -7,13 +7,23 @@ import User from './pages/User';
 
 const Stack = createStackNavigator();
 
-export default function Routes() {
+const routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Main">
-        <Stack.screen name="Main" component={Main} />
-        <Stack.screen name="User" component={User} />
+        <Stack.Screen
+          name="Main"
+          component={Main}
+          options={{
+            title: 'Usuários',
+            headerTitleAlign: 'center',
+            headerStyle: { backgroundColor: '#7159c1' },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen name="User" component={User} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+export default routes;
