@@ -40,7 +40,8 @@ export default function App() {
 }
 ```
 
-> Tem q estar no topo!
+> react-native-gesture-handler tem q estar no topo! Independente do tipo de
+> navigator
 
 ## src/routes.js
 
