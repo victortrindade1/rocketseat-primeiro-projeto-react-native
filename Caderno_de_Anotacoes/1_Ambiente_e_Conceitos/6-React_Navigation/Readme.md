@@ -43,6 +43,12 @@ export default function App() {
 > react-native-gesture-handler tem q estar no topo! Independente do tipo de
 > navigator
 
+> react-native-gesture-handler, aproveitando q está instalada, possui umas
+> funcionalidades legais q valem a pena ver na documentação. Essa lib tem por
+> objetivo trazer comportamentos nativos do aparelho aos componentes do App. Por
+> exemplo, botões de Android possuem nativo uma animação ao clicar. Qnd vc faz
+> um app, vc perde isso. Essa lib traz de volta essas animações nativas.
+
 ## src/routes.js
 
 ```javascript
