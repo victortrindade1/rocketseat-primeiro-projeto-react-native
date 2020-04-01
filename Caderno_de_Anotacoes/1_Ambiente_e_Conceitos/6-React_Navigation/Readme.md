@@ -47,7 +47,9 @@ export default function App() {
 > funcionalidades legais q valem a pena ver na documentação. Essa lib tem por
 > objetivo trazer comportamentos nativos do aparelho aos componentes do App. Por
 > exemplo, botões de Android possuem nativo uma animação ao clicar. Qnd vc faz
-> um app, vc perde isso. Essa lib traz de volta essas animações nativas.
+> um app, vc perde isso. Essa lib traz de volta essas animações nativas. Se
+> quiser saber mais, vá nas anotações 2.1- Estilizando formulario daqui deste
+> Caderno de anotações.
 
 ## src/routes.js
 
