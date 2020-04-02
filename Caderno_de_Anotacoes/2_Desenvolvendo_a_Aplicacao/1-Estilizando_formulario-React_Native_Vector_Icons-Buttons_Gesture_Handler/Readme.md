@@ -92,6 +92,9 @@ export const MyButton = styled(RectButton)`
 
 ## src/pages/Main/index.js
 
+Se vc reparar, tem a tag `<Form>`. Esta não é a tag `<form>` do HTML. É uma
+criada para usar no styles. Lá no styles ela é uma simples `<View>`.
+
 ```diff
 import React from 'react';
 - import { Text } from 'react-native';

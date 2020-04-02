@@ -20,6 +20,13 @@ export default api;
 
 ## src/pages/Main/index.js
 
+- No RN existe um submit diferente do web. Aqui, não fica no `<Form>`
+  (até pq esta nem é a tag `<form>`). Fica no próprio botão (melhor, né...).
+
+- `onPress` é o método padrão para dar o submit do form.
+
+- `returnKeyType="send"` muda o "enter" do teclado para um botão "send".
+
 ```diff
 - import React from 'react';
 + import React, { Component } from 'react';
