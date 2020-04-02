@@ -5,6 +5,9 @@
 O RN não possui um `Local Storage` como tem no react. Para salvar local no
 aparelho sem usar banco de dados, existe uma lib q cria um local storage.
 
+O Async Storage não possui um limite de memória. O limite é a própria memória do
+telefone.
+
 `yarn add @react-native-community/async-storage`
 
 Depois...
