@@ -1,3 +1,23 @@
+# Buscando dados da API
+
+Vai buscar na api do github todos os stars dado pelo usuário.
+
+## src/routes.js
+
+Colocar dinamicamente o nome do usuário como título de sua própria página de
+perfil.
+
+```diff
+<Stack.Screen
+  name="User"
+  component={User}
++  options={({ route }) => ({ title: route.params.user.name })}
+/>
+```
+
+## src/pages/User/index.js
+
+```javascript
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
@@ -37,3 +57,4 @@ User.propTypes = {
     }),
   }).isRequired,
 };
+```
