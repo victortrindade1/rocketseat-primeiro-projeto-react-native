@@ -8,7 +8,8 @@
     "start-clean": "react-native start --reset-cache",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "reactotron": "~/Android/Sdk/platform-tools/adb reverse tcp:9090 tcp:9090"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",

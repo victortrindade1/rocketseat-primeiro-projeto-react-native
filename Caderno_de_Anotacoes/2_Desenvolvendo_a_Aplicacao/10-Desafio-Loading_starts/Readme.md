@@ -1,6 +1,14 @@
+# Loading de repositórios
+
+Adicione um indicator de loading utilizando `<ActivityIndicator />` antes de
+carregar a lista de repositórios favoritados na tela de detalhes do Usuário.
+
+## src/pages/User/index.js
+
+```diff
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator } from 'react-native';
++ import { ActivityIndicator } from 'react-native';
 import api from '../../services/api';
 
 import {
@@ -15,47 +23,49 @@ import {
   Info,
   Title,
   Author,
-  Loading,
++  Loading,
 } from './styles';
 
 export default class User extends Component {
   state = {
     stars: [],
-    loading: false,
++    loading: false,
   };
 
   async componentDidMount() {
     const { route } = this.props;
     const { user } = route.params;
 
-    this.setState({ loading: true });
++    this.setState({ loading: true });
 
     const response = await api.get(`/users/${user.login}/starred`);
 
     this.setState({ stars: response.data });
 
-    this.setState({ loading: false });
++    this.setState({ loading: false });
   }
 
   render() {
-    const { stars, loading } = this.state;
+-    const { stars } = this.state;
++    const { stars, loading } = this.state;
 
     const { route } = this.props;
     const { user } = route.params;
 
     return (
-      <Container loading={loading}>
+-      <Container>
++      <Container loading={loading}>
         <Header>
           <Avatar source={{ uri: user.avatar }} />
           <Name>{user.name}</Name>
           <Bio>{user.bio}</Bio>
         </Header>
 
-        {loading ? (
-          <Loading>
-            <ActivityIndicator color="#aaa" size="large" />
-          </Loading>
-        ) : (
++        {loading ? (
++          <Loading>
++            <ActivityIndicator color="#aaa" size="large" />
++          </Loading>
++        ) : (
           <Stars
             data={stars}
             keyExtractor={(star) => String(star.id)}
@@ -69,7 +79,7 @@ export default class User extends Component {
               </Starred>
             )}
           />
-        )}
++        )}
       </Container>
     );
   }
@@ -86,3 +96,14 @@ User.propTypes = {
     }),
   }).isRequired,
 };
+```
+
+## src/pages/User/styles.js
+
+```diff
++ export const Loading = styled.View`
++   flex: 1;
++   align-items: center;
++   justify-content: center;
++ `;
+```
