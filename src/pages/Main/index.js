@@ -24,6 +24,7 @@ export default class Main extends Component {
     newUser: '',
     users: [],
     loading: false,
+    error: null,
   };
 
   async componentDidMount() {
