@@ -1,3 +1,8 @@
+# Validação de campo
+
+## src/pages/Main/index.js
+
+```diff
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -24,7 +29,7 @@ export default class Main extends Component {
     newUser: '',
     users: [],
     loading: false,
-    error: null,
++    error: null,
   };
 
   async componentDidMount() {
@@ -45,20 +50,20 @@ export default class Main extends Component {
 
   handleAddUser = async () => {
     const { users, newUser } = this.state;
+-    this.setState({ loading: true });
++    this.setState({ loading: true, error: false });
 
-    this.setState({ loading: true, error: false });
++    try {
++      // Validação: Campo vazio
++      if (newUser === '') {
++        throw new Error('Campo vazio');
++      }
 
-    try {
-      // Validação: Campo vazio
-      if (newUser === '') {
-        throw new Error('Campo vazio');
-      }
-
-      // validação: usuário duplicado
-      const hasUser = users.find((user) => user.login === newUser);
-      if (hasUser) {
-        throw new Error('Usuário duplicado');
-      }
++      // validação: usuário duplicado
++      const hasUser = users.find((user) => user.login === newUser);
++      if (hasUser) {
++        throw new Error('Usuário duplicado');
++      }
 
       const response = await api.get(`/users/${newUser}`);
 
@@ -73,16 +78,16 @@ export default class Main extends Component {
         users: [...users, data],
         newUser: '',
       });
-    } catch (error) {
++    } catch (error) {
       this.setState({
         error: true,
       });
-    } finally {
++    } finally {
       this.setState({
         loading: false,
       });
       Keyboard.dismiss(); // Para o teclado sumir depois do submit
-    }
++    }
   };
 
   handleNavigate = (user) => {
@@ -92,7 +97,8 @@ export default class Main extends Component {
   };
 
   render() {
-    const { users, newUser, loading, error } = this.state;
+-    const { users, newUser, loading } = this.state;
++    const { users, newUser, loading, error } = this.state;
 
     return (
       <Container>
@@ -105,7 +111,7 @@ export default class Main extends Component {
             onChangeText={(text) => this.setState({ newUser: text })}
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
-            error={error}
++            error={error}
           />
 
           <SubmitButton loading={loading} onPress={this.handleAddUser}>
@@ -142,3 +148,22 @@ Main.propTypes = {
     navigate: PropTypes.func,
   }).isRequired,
 };
+```
+
+## src/pages/Main/styles.js
+
+```diff
+export const Input = styled.TextInput.attrs({
+  // A cor do placeholder eu preciso estilizar como atributo pois
+  // placeholderTextColor é atributo de TextInput
+  placeholderTextColor: '#999',
+})`
+  flex: 1;
+  height: 40px;
+  background: #eee;
+  border-radius: 4px;
+  padding: 0 15px;
+-  border: 1px solid #eee;
++  border: ${(props) => (props.error ? `1px solid red;` : `1px solid #eee;`)};
+`;
+```
