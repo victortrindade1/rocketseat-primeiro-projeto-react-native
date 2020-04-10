@@ -1,6 +1,24 @@
+# Refresh Lista
+
+Desafio - Pull to Refresh
+
+Adicione uma funcionalidade para quando o usuário arrastar a listagem de repositórios favoritados pra baixo atualize a lista resetando o estado, ou seja, volte o estado da paginação para a página 1 exibindo apenas os 30 primeiros itens.
+
+A funcionalidade "Pull to Refresh" existe por padrão na FlatList e pode ser implementada através do seguinte código:
+
+```javascript
+<Stars
+  onRefresh={this.refreshList} // Função dispara quando o usuário arrasta a lista pra baixo
+  refreshing={this.state.refreshing} // Variável que armazena um estado true/false que representa se a lista está atualizando
+  // Restante das props
+>
+```
+
+## src/pages/User/index.js
+
+```diff
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { RefreshControl } from 'react-native';
 import api from '../../services/api';
 
 import {
@@ -16,7 +34,7 @@ import {
   Title,
   Author,
   Loading,
-  Refresh,
++  Refresh,
 } from './styles';
 
 export default class User extends Component {
@@ -24,7 +42,7 @@ export default class User extends Component {
     stars: [],
     loading: true,
     page: 1,
-    refreshing: false,
++    refreshing: false,
   };
 
   async componentDidMount() {
@@ -44,7 +62,7 @@ export default class User extends Component {
       stars: page >= 2 ? [...stars, ...response.data] : response.data,
       page,
       loading: false,
-      refreshing: false,
++      refreshing: false,
     });
   };
 
@@ -56,12 +74,13 @@ export default class User extends Component {
     this.load(nextPage);
   };
 
-  refreshList = () => {
-    this.setState({ refreshing: true, stars: [] }, this.load);
-  };
++  refreshList = () => {
++    this.setState({ refreshing: true, stars: [] }, this.load);
++  };
 
   render() {
-    const { stars, loading, refreshing } = this.state;
+-    const { stars, loading } = this.state;
++    const { stars, loading, refreshing } = this.state;
 
     const { route } = this.props;
     const { user } = route.params;
@@ -79,9 +98,9 @@ export default class User extends Component {
         ) : (
           <Stars
             data={stars}
-            refreshControl={
-              <Refresh onRefresh={this.refreshList} refreshing={refreshing} />
-            }
++            refreshControl={
++              <Refresh onRefresh={this.refreshList} refreshing={refreshing} />
++            }
             onEndReachedThreshold={0.2}
             onEndReached={this.loadMore}
             keyExtractor={(star) => String(star.id)}
@@ -112,3 +131,12 @@ User.propTypes = {
     }),
   }).isRequired,
 };
+```
+
+## src/pages/User/styles.js
+
+```diff
++ export const Refresh = styled.RefreshControl.attrs({
++   colors: ['#7159c1', '#9Bd35A'],
++ })``;
+```

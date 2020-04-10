@@ -87,3 +87,7 @@ export const Loading = styled.ActivityIndicator.attrs({
   justify-content: center;
   margin-top: 20px;
 `;
+
+export const Refresh = styled.RefreshControl.attrs({
+  colors: ['#7159c1', '#9Bd35A'],
+})``;
