@@ -8,7 +8,6 @@ carregar a lista de repositórios favoritados na tela de detalhes do Usuário.
 ```diff
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-+ import { ActivityIndicator } from 'react-native';
 import api from '../../services/api';
 
 import {
@@ -29,14 +28,12 @@ import {
 export default class User extends Component {
   state = {
     stars: [],
-+    loading: false,
++    loading: true,
   };
 
   async componentDidMount() {
     const { route } = this.props;
     const { user } = route.params;
-
-+    this.setState({ loading: true });
 
     const response = await api.get(`/users/${user.login}/starred`);
 
@@ -53,8 +50,7 @@ export default class User extends Component {
     const { user } = route.params;
 
     return (
--      <Container>
-+      <Container loading={loading}>
+      <Container>
         <Header>
           <Avatar source={{ uri: user.avatar }} />
           <Name>{user.name}</Name>
@@ -62,9 +58,7 @@ export default class User extends Component {
         </Header>
 
 +        {loading ? (
-+          <Loading>
-+            <ActivityIndicator color="#aaa" size="large" />
-+          </Loading>
++          <Loading />
 +        ) : (
           <Stars
             data={stars}
@@ -101,9 +95,13 @@ User.propTypes = {
 ## src/pages/User/styles.js
 
 ```diff
-+ export const Loading = styled.View`
++ export const Loading = styled.ActivityIndicator.attrs({
++   color: '#7159c1',
++   size: 50,
++ })`
 +   flex: 1;
 +   align-items: center;
 +   justify-content: center;
++   margin-top: 20px;
 + `;
 ```

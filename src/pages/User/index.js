@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator } from 'react-native';
 import api from '../../services/api';
 
 import {
@@ -21,21 +20,37 @@ import {
 export default class User extends Component {
   state = {
     stars: [],
-    loading: false,
+    loading: true,
+    page: 1,
   };
 
   async componentDidMount() {
+    this.load();
+  }
+
+  load = async (page = 1) => {
+    const { stars } = this.state;
     const { route } = this.props;
     const { user } = route.params;
 
-    this.setState({ loading: true });
+    const response = await api.get(`/users/${user.login}/starred`, {
+      params: { page },
+    });
 
-    const response = await api.get(`/users/${user.login}/starred`);
+    this.setState({
+      stars: page >= 2 ? [...stars, ...response.data] : response.data,
+      page,
+      loading: false,
+    });
+  };
 
-    this.setState({ stars: response.data });
+  loadMore = () => {
+    const { page } = this.state;
 
-    this.setState({ loading: false });
-  }
+    const nextPage = page + 1;
+
+    this.load(nextPage);
+  };
 
   render() {
     const { stars, loading } = this.state;
@@ -44,7 +59,7 @@ export default class User extends Component {
     const { user } = route.params;
 
     return (
-      <Container loading={loading}>
+      <Container>
         <Header>
           <Avatar source={{ uri: user.avatar }} />
           <Name>{user.name}</Name>
@@ -52,12 +67,12 @@ export default class User extends Component {
         </Header>
 
         {loading ? (
-          <Loading>
-            <ActivityIndicator color="#aaa" size="large" />
-          </Loading>
+          <Loading />
         ) : (
           <Stars
             data={stars}
+            onEndReachedThreshold={0.2}
+            onEndReached={this.loadMore}
             keyExtractor={(star) => String(star.id)}
             renderItem={({ item }) => (
               <Starred>
