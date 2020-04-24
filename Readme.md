@@ -5,18 +5,18 @@ todos os repositórios favoritados com star deste usuário. Ao clicar no
 repositório, abre a própria página web do Github do repositório.
 
 <div style="display: flex !important">
-  <div>
+  <span>
     Main
     <img src="demo_images/main.png" width="200"/>
-  </div>
-  <div>
+  </span>
+  <span>
     User
     <img src="demo_images/user.png" width="200"/>
-  </div>
-  <div>
+  </span>
+  <span>
     Repository
     <img src="demo_images/repository.png" width="200"/>
-  </div>
+  </span>
 </div>
 
 - Instale as dependências: `yarn`
