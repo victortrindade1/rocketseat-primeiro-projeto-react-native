@@ -26,6 +26,7 @@ charset = utf-8
 Se vc possuir um arquivo `.eslintrc.js` criado por padrão, delete este arquivo.
 
 `yarn add eslint -D`
+> yarn add eslint@6.8.0 -D
 
 Inicie o eslint
 `yarn eslint --init`
@@ -99,6 +100,8 @@ module.exports = {
 Se tiver o arquivo .prettierrc.js, pode deletar, mas acho q não precisa.
 
 `yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D`
+
+> yarn add prettier@2.0.2 eslint-config-prettier@6.10.1 eslint-plugin-prettier@3.1.2 babel-eslint@10.1.0 -D
 
 ### .prettierrc
 
