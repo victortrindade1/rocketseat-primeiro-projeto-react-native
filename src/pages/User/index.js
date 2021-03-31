@@ -82,25 +82,25 @@ export default class User extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <Stars
-            data={stars}
-            refreshControl={
-              <Refresh onRefresh={this.refreshList} refreshing={refreshing} />
-            }
-            onEndReachedThreshold={0.2}
-            onEndReached={this.loadMore}
-            keyExtractor={(star) => String(star.id)}
-            renderItem={({ item }) => (
-              <Starred onPress={() => this.handleNavigate(item)}>
-                <OwnerAvatar source={{ uri: item.owner.avatar_url }} />
-                <Info>
-                  <Title>{item.name}</Title>
-                  <Author>{item.owner.login}</Author>
-                </Info>
-              </Starred>
-            )}
-          />
-        )}
+            <Stars
+              data={stars}
+              refreshControl={
+                <Refresh onRefresh={this.refreshList} refreshing={refreshing} />
+              }
+              onEndReachedThreshold={0.2}
+              onEndReached={this.loadMore}
+              keyExtractor={(star) => String(star.id)}
+              renderItem={({ item }) => (
+                <Starred onPress={() => this.handleNavigate(item)}>
+                  <OwnerAvatar source={{ uri: item.owner.avatar_url }} />
+                  <Info>
+                    <Title>{item.name}</Title>
+                    <Author>{item.owner.login}</Author>
+                  </Info>
+                </Starred>
+              )}
+            />
+          )}
       </Container>
     );
   }
