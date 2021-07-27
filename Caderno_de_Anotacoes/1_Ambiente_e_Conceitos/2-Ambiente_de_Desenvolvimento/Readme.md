@@ -2,7 +2,7 @@
 
 Existe uma documentação pronta da Rocketseat online com o passo-a-passo pra
 configurar o Linux pra usar o React Native.
-Acesse: `docs.rocketseat.dev`
+Acesse: `https://react-native.rocketseat.dev/`
 
 Umas observações:
 
