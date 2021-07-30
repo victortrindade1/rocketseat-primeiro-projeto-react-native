@@ -8,6 +8,11 @@ Crie um projeto com o comando:
 
 `react-native init <NomeDoProjeto>`
 
+> Parece q nos últimos tempos o react-native init deu uns problemas. o 
+> recomendado agora é iniciar pelo npx
+
+`npx react-native init <NomeDoProjeto>`
+
 > Para rodar o projeto, vc deve estar com o emulador aberto! Para abrir o
 > emulador, Abra o Android Studio. Vá em `Configure > AVD Manager`, e dê play.
 > Caso queira outro android para simular, baixe em `SDK Manager`.
